@@ -13,24 +13,23 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.riyazlabassignment.destinations.Lab2ScreenDestination
 import com.example.riyazlabassignment.ui.theme.*
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import com.example.riyazlabassignment.ui.theme.Typography
+
 
 @Composable
-fun HomeCompactScreen(navigator: DestinationsNavigator){
+fun HomeCompactScreen(){
     Column {
         GreetingSection(name = "Riyaz")
         ChipSection(chips = listOf("Riyaz","2019WA86947","Lab 3","SDPD","CSIWZ424"))
         ObjectiveSection()
-        CurrentLabSection(navigator)
+        CurrentLabSection()
     }
 }
 
@@ -48,21 +47,18 @@ fun GreetingSection(name: String){
             Text(
                 text = "Hi, $name",
                 fontFamily = montserrat,
-                color = Color.White,
                 fontWeight = FontWeight.Bold,
                 fontSize = 24.sp
             )
             Spacer(modifier = Modifier.height(5.dp))
             Text(
                 text = "This is your Lab Assignment App",
-                style = MaterialTheme.typography.body1,
-                color = Color.White
+                style = MaterialTheme.typography.h2
             )
         }
         Icon(
             painter = painterResource(id = R.drawable.ic_search),
             contentDescription = "Search",
-            tint = Color.White,
             modifier = Modifier
                 .size(24.dp)
                 .clickable {
@@ -116,54 +112,41 @@ fun ChipSection(chips: List<String>){
 }
 
 @Composable
-fun ObjectiveSection(){
-    Box{
+fun ObjectiveSection() {
+    Box(modifier = Modifier
+        .padding(15.dp)
+        .fillMaxWidth()
+        .clip(RoundedCornerShape(20.dp))
+        .background(LightRed)){
         Column(
             horizontalAlignment = Alignment.Start,
             verticalArrangement = Arrangement.SpaceBetween,
             modifier = Modifier
                 .padding(15.dp)
                 .fillMaxWidth()
-                .clip(RoundedCornerShape(20.dp))
-                .background(LightRed)
         ) {
-            Row(horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(15.dp)
-            ){
-                Text(
-                    text = "Lab 3 Objective",
-                    style = Typography.h1,
-                    modifier = Modifier
-                )
-                Icon(
-                    painter = painterResource(id = R.drawable.ic_science),
-                    contentDescription = "Lab",
-                    tint = Color.White,
-                    modifier = Modifier
-                        .size(32.dp)
-                )
-            }
             Text(
-                text = stringResource(id = R.string.lab3_objective),
-                style = Typography.h2,
-                modifier = Modifier.padding(15.dp)
+                text = "Lab 3 Objective",
+                style = Typography.h1
+            )
+            Spacer(modifier = Modifier.height(10.dp))
+            Text(
+                text = stringResource(id = R.string.lab4_objective),
+                style = Typography.h2
             )
         }
 
     }
-
 }
 
 @Composable
-fun CurrentLabSection(navigator: DestinationsNavigator){
-    Box(modifier = Modifier
-        .padding(start = 15.dp, top = 15.dp, end = 15.dp, bottom = 180.dp)
-        .fillMaxSize()
-        .clip(RoundedCornerShape(20.dp))
-        .background(LightGreen1)
+fun CurrentLabSection(){
+    Box(
+        modifier = Modifier
+            .padding(15.dp)
+            .fillMaxWidth()
+            .clip(RoundedCornerShape(20.dp))
+            .background(LightGreen1)
     ){
         Column(
             horizontalAlignment = Alignment.Start,
@@ -172,43 +155,22 @@ fun CurrentLabSection(navigator: DestinationsNavigator){
                 .padding(15.dp)
                 .fillMaxWidth()
         ) {
-            Text(text = "Current Lab Assignment", style = Typography.h1)
+            Text(text = "Learning Outcome", style = Typography.h1)
             Spacer(modifier = Modifier.height(10.dp))
             Text(
-                text = "More than one activity",
+                text = "Create an App with sophisticated UI",
                 style = Typography.h2,
                 modifier = Modifier.padding(start = 20.dp)
             )
             Text(
-                text = "Permissions",
-                style = Typography.h2,
-                modifier = Modifier.padding(start = 20.dp)
-            )
-            Text(
-                text = "Multiple screen size compatibility",
+                text = "Elegant User Interface",
                 style = Typography.h2,
                 modifier = Modifier.padding(start = 20.dp)
             )
 
+
         }
-        Box(
-            contentAlignment = Alignment.Center,
-            modifier = Modifier
-                .padding(15.dp)
-                .align(Alignment.BottomEnd)
-                .clip(RoundedCornerShape(40.dp))
-                .clickable {
-                    navigator.navigate(Lab2ScreenDestination)
-                }
-                .background(ButtonBlue)
-        ) {
-            Text(
-                text = "  View  ",
-                color = TextWhite,
-                modifier = Modifier.padding(15.dp),
-                style = Typography.h2
-            )
-        }
+
 
     }
 }

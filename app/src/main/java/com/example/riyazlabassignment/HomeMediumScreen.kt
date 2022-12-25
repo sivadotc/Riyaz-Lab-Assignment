@@ -10,116 +10,35 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import com.example.riyazlabassignment.destinations.Lab2ScreenDestination
-import com.example.riyazlabassignment.ui.theme.*
-import com.ramcosta.composedestinations.navigation.DestinationsNavigator
+import com.example.riyazlabassignment.ui.theme.ButtonBlue
+import com.example.riyazlabassignment.ui.theme.DarkerButtonBlue
+import com.example.riyazlabassignment.ui.theme.TextWhite
+import com.example.riyazlabassignment.ui.theme.Typography
+
 
 @Composable
-fun HomeMediumScreen(navigator: DestinationsNavigator){
+fun HomeMediumScreen() {
 
-        Row {
-            Column(modifier = Modifier
-                .weight(0.75f)
-                .fillMaxSize(), verticalArrangement = Arrangement.SpaceEvenly) {
-                GreetingSection(name = "Riyaz")
-                ChipSectionMedium(chips = listOf("Riyaz","2019WA86947","Lab 3","SDPD","CSIWZ424"))
-
-            }
-            Column(modifier = Modifier
-                .weight(1f)
-                .fillMaxSize(), verticalArrangement = Arrangement.Center
-            ) {
-                ObjectiveSectionMedium()
-                CurrentLabSectionMedium(navigator)
-            }
+    Row {
+        Column(modifier = Modifier
+            .weight(0.75f)
+            .fillMaxSize(), verticalArrangement = Arrangement.SpaceEvenly) {
+            GreetingSection(name = "Riyaz")
+            ChipSectionMedium(chips = listOf("Riyaz","2019WA86947","Lab 3","SDPD","CSIWZ424"))
 
         }
-}
-
-@Composable
-fun ObjectiveSectionMedium() {
-    Box(modifier = Modifier
-        .padding(15.dp)
-        .fillMaxWidth()
-        .clip(RoundedCornerShape(20.dp))
-        .background(LightRed)){
-    Column(
-        horizontalAlignment = Alignment.Start,
-        verticalArrangement = Arrangement.Center,
-        modifier = Modifier
-            .padding(15.dp)
-            .fillMaxWidth()
-    ) {
-        Text(
-            text = "Lab 3 Objective",
-            style = Typography.h1
-        )
-        Spacer(modifier = Modifier.height(10.dp))
-        Text(
-            text = stringResource(id = R.string.lab3_objective),
-            style = Typography.h2
-        )
-    }
-}
-}
-
-@Composable
-fun CurrentLabSectionMedium(navigator: DestinationsNavigator){
-    Box(modifier = Modifier
-        .padding(15.dp)
-        .fillMaxWidth()
-        .clip(RoundedCornerShape(20.dp))
-        .background(LightGreen1)
-    ){
-        Column(
-            horizontalAlignment = Alignment.Start,
-            verticalArrangement = Arrangement.SpaceBetween,
-            modifier = Modifier
-                .padding(15.dp)
-                .fillMaxWidth()
+        Column(modifier = Modifier
+            .weight(1f)
+            .fillMaxSize(), verticalArrangement = Arrangement.Top
         ) {
-            Text(text = "Current Lab Assignment", style = Typography.h1)
-            Spacer(modifier = Modifier.height(10.dp))
-            Text(
-                text = "More than one activity",
-                style = Typography.h2,
-                modifier = Modifier.padding(start = 20.dp)
-            )
-            Text(
-                text = "Permissions",
-                style = Typography.h2,
-                modifier = Modifier.padding(start = 20.dp)
-            )
-            Text(
-                text = "Multiple screen size compatibility",
-                style = Typography.h2,
-                modifier = Modifier.padding(start = 20.dp)
-            )
-
-        }
-        Box(
-            contentAlignment = Alignment.Center,
-            modifier = Modifier
-                .padding(15.dp)
-                .align(Alignment.BottomEnd)
-                .clip(RoundedCornerShape(40.dp))
-                .clickable {
-                    navigator.navigate(Lab2ScreenDestination)
-                }
-                .background(ButtonBlue)
-        ) {
-            Text(
-                text = "  View  ",
-                color = TextWhite,
-                modifier = Modifier.padding(15.dp),
-                style = Typography.h2
-            )
+            ObjectiveSection()
+            CurrentLabSection()
         }
 
     }
 }
+
 
 @Composable
 fun ChipSectionMedium(chips: List<String>){
