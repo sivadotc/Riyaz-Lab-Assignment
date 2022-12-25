@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Riyaz Lab Assignment</string>
+    <string name="lab3_objective">Intent class and Permissions. Fragment class - another key class
+responsible for displaying an application\'s user interface</string>
+</resources>
